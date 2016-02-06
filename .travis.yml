@@ -1,0 +1,15 @@
+language: python
+
+python:
+- '2.7'
+- '3.5'
+
+install:
+- pip install -r tests/requirements.txt
+
+script:
+- export PYTHONPATH=$PYTHONPATH:.
+- py.test tests --cov temporaluuid64 --cov-report term-missing
+
+after_success:
+- coveralls
