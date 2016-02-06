@@ -18,7 +18,8 @@ __version__ = '0.1.0'
 EPOCH = datetime(2015, 8, 1)
 
 
-def ip2int(addr):
+def ipv4_to_int(addr):
+    """Converts an IPv4 address in a string format to a 32-bit integer."""
     return struct.unpack("!I", socket.inet_aton(addr))[0]
 
 
@@ -43,6 +44,6 @@ def issue():
     local_ip = os.environ.get(
         'IPV4_ADDR',
         socket.gethostbyname(socket.gethostname()))
-    node_id = ip2int(local_ip) % (2 ** 16)
+    node_id = ipv4_to_int(local_ip) % (2 ** 16)
     uuid = UUID64(node_id)
     return uuid.issue()
