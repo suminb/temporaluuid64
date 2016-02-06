@@ -9,7 +9,7 @@ install:
 
 script:
 - export PYTHONPATH=$PYTHONPATH:.
-- py.test tests --cov temporaluuid64 --cov-report term-missing
+- py.test tests --cov uuid64 --cov-report term-missing
 
 after_success:
 - coveralls
