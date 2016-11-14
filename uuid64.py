@@ -40,12 +40,13 @@ class UUID64(object):
         return int(time_seq << 16 | self.node_id)
 
 
-def issue():
-    try:
-        host = socket.gethostbyname(socket.gethostname())
-    except socket.gaierror:
-        host = '127.0.0.1'
-    local_ip = os.environ.get('IPV4_ADDR', host)
-    node_id = ipv4_to_int(local_ip) % (2 ** 16)
+def issue(node_id=None):
+    if node_id is None:
+        try:
+            host = socket.gethostbyname(socket.gethostname())
+        except socket.gaierror:
+            host = '127.0.0.1'
+        local_ip = os.environ.get('IPV4_ADDR', host)
+        node_id = ipv4_to_int(local_ip) % (2 ** 16)
     uuid = UUID64(node_id)
     return uuid.issue()
