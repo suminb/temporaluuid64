@@ -1,6 +1,16 @@
 Temporal UUID64
 ===============
-A time-based 64-bit UUID generator
+A time-based 64-bit UUID generator. The basic idea behind is to provide a universally unique identifier that satisfies the following conditions:
+
+Sort entities in chronological order
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Entities given their UUIDs must be able to be sorted in chronological order without relying on additional data fields. This is why the timestamp bits occupy the most significant bits.
+
+Suitable for distributed systems
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Even if multiple identifiers are created at the exactly same time, given a particular granularity (generally a millisecond), the UUID generator must be able to provide a way to avoid collisions.
 
 
 Overview
