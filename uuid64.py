@@ -37,7 +37,7 @@ class UUID64(object):
     def issue(self):
         time_seq = int(time.time() * 10000)
 
-        return int(time_seq << 16 | self.node_id)
+        return int(time_seq << 16 | (self.node_id & 0xFFFF) )
 
 
 def issue(node_id=None):
