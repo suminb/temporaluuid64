@@ -20,6 +20,6 @@ setup(name='temporaluuid64',
       long_description=readme(),
       author=uuid64.__author__,
       author_email=uuid64.__email__,
-      url='http://github.com/suminb/temporaluuid64',
+      url='https://github.com/suminb/temporaluuid64',
       packages=[],
-      )
+)
