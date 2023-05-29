@@ -27,10 +27,10 @@ def uuid64_fields(uuid64):
     """
     :type uuid64: int
     """
-    return (uuid64 >> 48, uuid64 & 0xFFFF)
+    return ((uuid64 >> 16) / 10000, uuid64 & 0xFFFF)
 
 
-class UUID64(object):
+class UUID64:
     def __init__(self, node_id):
         self.node_id = node_id
 
@@ -42,7 +42,7 @@ class UUID64(object):
         return int(time_seq << 16 | (self.node_id & 0xFFFF))
 
 
-def issue(node_id=None):
+def issue(current_time=None, node_id=None):
     if node_id is None:
         try:
             host = socket.gethostbyname(socket.gethostname())
@@ -51,4 +51,4 @@ def issue(node_id=None):
         local_ip = os.environ.get("IPV4_ADDR", host)
         node_id = ipv4_to_int(local_ip) % (2 ** 16)
     uuid = UUID64(node_id)
-    return uuid.issue()
+    return uuid.issue(current_time)
