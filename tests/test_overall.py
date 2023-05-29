@@ -1,3 +1,4 @@
+from datetime import datetime
 from functools import reduce
 import random
 import time
@@ -18,7 +19,8 @@ def test_basic():
 
 
 def test_uuid64_fields():
-    uuid = uuid64.issue()
+    current_time = datetime.utcnow()
+    uuid = uuid64.issue(current_time=current_time)
     timestamp, node_id = uuid64.uuid64_fields(uuid)
-    assert 0 <= timestamp < (1 << 48)
+    assert abs(current_time.timestamp() - timestamp) < 0.01
     assert 0 <= node_id <= 0xFFFF
