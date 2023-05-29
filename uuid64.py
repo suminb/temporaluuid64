@@ -14,7 +14,7 @@ from typing import Optional
 
 __author__ = "Sumin Byeon"
 __email__ = "suminb@gmail.com"
-__version__ = "0.1.3"
+__version__ = "0.2.0"
 
 
 EPOCH = datetime(2015, 8, 1)
