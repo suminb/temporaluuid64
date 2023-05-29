@@ -34,8 +34,10 @@ class UUID64(object):
     def __init__(self, node_id):
         self.node_id = node_id
 
-    def issue(self):
-        time_seq = int(time.time() * 10000)
+    def issue(self, current_time: datetime = None):
+        if current_time is None:
+            current_time = datetime.utcnow()
+        time_seq = int(current_time.timestamp() * 10000)
 
         return int(time_seq << 16 | (self.node_id & 0xFFFF))
 
