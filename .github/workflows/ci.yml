@@ -22,8 +22,7 @@ jobs:
         if [ -f tests/requirements.txt ]; then pip install -r tests/requirements.txt; fi
     - name: Lint with black and mypy
       run: |
-        # Disable black for now...
-        # black --check .
+        black --check .
         mypy --ignore-missing-imports uuid64.py
     - name: Test with pytest
       run: |

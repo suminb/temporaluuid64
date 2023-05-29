@@ -51,6 +51,6 @@ def issue(current_time=None, node_id=None):
         except socket.gaierror:
             host = "127.0.0.1"
         local_ip = os.environ.get("IPV4_ADDR", host)
-        node_id = ipv4_to_int(local_ip) % (2 ** 16)
+        node_id = ipv4_to_int(local_ip) % (2**16)
     uuid = UUID64(node_id)
     return uuid.issue(current_time)
