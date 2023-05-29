@@ -10,6 +10,8 @@ import struct
 import socket
 import time
 
+from typing import Optional
+
 __author__ = "Sumin Byeon"
 __email__ = "suminb@gmail.com"
 __version__ = "0.1.3"
@@ -34,7 +36,7 @@ class UUID64:
     def __init__(self, node_id):
         self.node_id = node_id
 
-    def issue(self, current_time: datetime = None):
+    def issue(self, current_time: Optional[datetime] = None) -> int:
         if current_time is None:
             current_time = datetime.utcnow()
         time_seq = int(current_time.timestamp() * 10000)
