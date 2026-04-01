@@ -4,7 +4,7 @@ time (0-47)
 node (48-63)
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 import os
 import struct
 import socket
@@ -38,7 +38,7 @@ class UUID64:
 
     def issue(self, current_time: Optional[datetime] = None) -> int:
         if current_time is None:
-            current_time = datetime.utcnow()
+            current_time = datetime.now(timezone.utc)
         time_seq = int(current_time.timestamp() * 10000)
 
         return int(time_seq << 16 | (self.node_id & 0xFFFF))
